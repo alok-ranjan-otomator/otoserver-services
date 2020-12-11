@@ -11,9 +11,13 @@ $response['status'] = 0;
 $response['message'] = "";
 $response['data'] = array();
 
-$client_ip = $_SERVER['REMOTE_ADDR'];
+// $client_ip = $_SERVER['REMOTE_ADDR'];
+
+$client_ip = get_user_ip_address();
 
 $decimal_ip = ip2long ( $client_ip );
+
+// echo get_user_ip_address();
 
 $get_location = get_ip_location( $decimal_ip );
 
