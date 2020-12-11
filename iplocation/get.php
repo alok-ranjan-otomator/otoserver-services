@@ -13,27 +13,36 @@ $response['data'] = array();
 
 // $client_ip = $_SERVER['REMOTE_ADDR'];
 
-$client_ip = get_user_ip_address();
 
-$decimal_ip = ip2long ( $client_ip );
-
-// echo get_user_ip_address();
-
-$get_location = get_ip_location( $decimal_ip );
-
-if ( $get_location['status'] == 1 ){
-    $response['status'] = 1;
-    $response['message'] = "Location Found";
-    $response['data']['ip'] = $client_ip;
-    
-    $ip_location = $get_location['data'][0];
-    unset( $ip_location['ip_from'] );
-    unset( $ip_location['ip_to'] );
-
-    $response['data']['location'] = $ip_location;
-    
+if ( isset( $_REQUEST['ip'] ) && $_REQUEST['ip'] != "" ){
+    $client_ip = $_REQUEST['ip'];
 }
 else {
+    $client_ip = get_user_ip_address();
+}
+
+try {
+    $decimal_ip = ip2long ( $client_ip );
+    $get_location = get_ip_location( $decimal_ip );
+
+    if ( $get_location['status'] == 1 ){
+        $response['status'] = 1;
+        $response['message'] = "Location Found";
+        $response['data']['ip'] = $client_ip;
+        
+        $ip_location = $get_location['data'][0];
+        unset( $ip_location['ip_from'] );
+        unset( $ip_location['ip_to'] );
+
+        $response['data']['location'] = $ip_location;
+        
+    }
+    else {
+        $response['status'] = 0;
+        $response['message'] = "Location Not Found";
+    }
+}
+catch ( Exception $e ) {
     $response['status'] = 0;
     $response['message'] = "Location Not Found";
 }

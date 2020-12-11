@@ -51,9 +51,6 @@ function convert_ip_to_decimal_ip( $ip ){
 
 function get_user_ip_address($return_type=NULL)
 {
-	// Consider: http://stackoverflow.com/questions/4581789/how-do-i-get-user-ip-address-in-django
-	// Consider: http://networkengineering.stackexchange.com/questions/2283/how-to-to-determine-if-an-address-is-a-public-ip-address
-
 	$ip_addresses = array();
 	$ip_elements = array(
 		'HTTP_X_FORWARDED_FOR', 'HTTP_FORWARDED_FOR',
