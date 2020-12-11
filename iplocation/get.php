@@ -20,7 +20,14 @@ $get_location = get_ip_location( $decimal_ip );
 if ( $get_location['status'] == 1 ){
     $response['status'] = 1;
     $response['message'] = "Location Found";
-    $response['data'] = $get_location['data'];
+    $response['data']['ip'] = $client_ip;
+    
+    $ip_location = $get_location['data'][0];
+    unset( $ip_location['ip_from'] );
+    unset( $ip_location['ip_to'] );
+
+    $response['data']['location'] = $ip_location;
+    
 }
 else {
     $response['status'] = 0;
