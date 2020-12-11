@@ -1,0 +1,72 @@
+to use mongodb in any project
+
+-- run composer require mongodb/mongodb in terminal in working root directory
+-- include or require 'vendor/autoload.php' in php file ;
+
+
+mongo admin for all permission..
+user : mongoadmin
+pass : oto....
+
+
+commands -- 
+for user role only
+db.createUser(
+  {
+    user: "mongoadmin",
+    pwd: "otoAI@A438",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+for all operations
+
+db.createUser(
+   {
+       user: "root", 
+       pwd: "otoAI@A438", 
+       roles:["root"]
+   })
+
+or 
+
+db.createUser(
+	{ 
+	  user: "root" ,
+	  pwd: "otoAI@A438",
+	  roles: [{"userAdminAnyDatabase"}, "dbAdminAnyDatabase", "readWriteAnyDatabase"]
+	}
+)
+
+for specific db and permission
+
+db.createUser(
+  {
+    user: "easyeats_user",
+    pwd: "otoAI@A438",
+    roles: [ { role: "readWrite", db: "easyeats" } ]
+  }
+)
+
+
+
+
+/////temp////
+
+db.createUser(
+   {
+       user: "root2", 
+       pwd: "otoAIA438", 
+       roles:["root"]
+   })
+
+db.createUser(
+  {
+    user: "easyeatsuser",
+    pwd: "otoAIA438",
+    roles: [ { role: "readWrite", db: "easyeats" } ]
+  }
+)
+
+
+/////////////
